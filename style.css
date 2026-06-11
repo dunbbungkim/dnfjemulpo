@@ -1,0 +1,746 @@
+/* [공통 스타일] */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+}
+
+/* [레이아웃] 전체 틀 */
+.main-container {
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    width: 100%;
+}
+
+/* [레이아웃] 양쪽 애드센스 광고 영역 */
+.side-banner {
+    flex: 1;
+    background-color: #ff8a8a;
+    max-width: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+}
+
+/* [레이아웃] 가운데 핵심 콘텐츠 영역 (1200px) */
+.content-center {
+    width: 1200px;
+    background-color: #ffffff;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* [상단 타이틀 영역] */
+.header-section {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 25px;
+}
+.header-logo {
+    max-width: 450px; 
+    width: 100%;       
+    height: auto;      
+}
+.sub-text {
+    font-size: 15px;
+    color: #555;
+    font-weight: bold;
+    margin-top: 2px;
+    margin-bottom: 10px;
+}
+.guide-btn {
+    background-color: #ffffff;
+    color: #333;
+    border: 2px solid #333;
+    padding: 6px 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* 레이아웃 그리드: 좌/우 2열 대칭 구조 대동맹 컨테이너 */
+.modules-container {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 940px;
+    margin-top: 10px;
+}
+
+/* 왼쪽 열 (인벤토리 + 결전의 브금) */
+.left-column {
+    width: 440px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* 오른쪽 열 (제물 스택 + 강화 로그) */
+.right-column {
+    width: 440px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* ========================================= */
+/* [1. 제물 인벤토리 모듈 스타일]            */
+/* ========================================= */
+.inventory-wrapper {
+    width: 100%; 
+    background-color: #ffffff;
+    border: 2px solid #333333;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.inventory-header {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    margin-bottom: 12px;
+    font-weight: bold;
+}
+.header-left-group {
+    display: flex;
+    align-items: center;
+    gap: 12px; 
+}
+.toggle-container {
+    display: flex;
+    background-color: #eeeeee;
+    border: 1px solid #333;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+}
+.toggle-btn {
+    padding: 3px 8px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #666;
+    transition: all 0.2s;
+}
+.toggle-btn.active {
+    background-color: #333333;
+    color: #ffffff;
+}
+.count-label {
+    font-size: 14px;
+    color: #ff8a8a;
+    font-weight: bold;
+}
+.reset-btn {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 4px 10px;
+    font-size: 12px;
+    cursor: pointer;
+    font-weight: bold;
+}
+.inventory-scroll-box {
+    height: 354px; 
+    overflow-y: scroll;
+    overflow-x: hidden; 
+    border: 1px solid #999999;
+    background-color: #f0f0f0;
+    padding: 6px;
+}
+.inventory-scroll-box::-webkit-scrollbar {
+    width: 6px;
+}
+.inventory-scroll-box::-webkit-scrollbar-thumb {
+    background-color: #333333;
+    border-radius: 3px;
+}
+.inventory-scroll-box::-webkit-scrollbar-track {
+    background-color: #dddddd;
+}
+.inventory-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 55px);
+    gap: 3px;
+}
+.slot {
+    width: 55px;
+    height: 55px;
+    border: 1px solid #cccccc;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.sacrifice-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.inventory-controls {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.control-block {
+    position: relative; 
+    display: flex;
+    flex-direction: column;
+}
+.control-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.number-picker {
+    display: flex;
+    align-items: center;
+    border: 1px solid #333;
+    background: #fff;
+}
+.number-picker button {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: #eee;
+    font-weight: bold;
+    cursor: pointer;
+}
+.number-picker input {
+    width: 45px;
+    height: 30px; 
+    text-align: center; 
+    line-height: 30px; 
+    padding: 0; 
+    border: none;
+    font-weight: bold;
+    background-color: transparent;
+    -moz-appearance: textfield;
+}
+.number-picker input::-webkit-outer-spin-button,
+.number-picker input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.action-btn {
+    flex: 1;
+    height: 32px;
+    background-color: #ffffff;
+    border: 1px solid #333;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center; 
+    padding: 0 10px;
+}
+.action-btn:hover {
+    background-color: #333;
+    color: #fff;
+}
+.speech-bubble {
+    position: absolute;
+    top: -36px; 
+    left: 5px;
+    background-color: #333333;
+    color: #ffffff;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: bold;
+    white-space: nowrap;
+    z-index: 10;
+    display: none; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+.speech-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 15px;
+    border-width: 5px 5px 0;
+    border-style: solid;
+    border-color: #333333 transparent;
+    display: block;
+    width: 0;
+}
+
+/* ========================================= */
+/* [2. 제물 스택 모듈 스타일]                */
+/* ========================================= */
+.stack-wrapper {
+    width: 100%;
+    background-color: #ffffff;
+    border: 2px solid #333333;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.stack-header-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 2px;
+}
+.stack-warning {
+    font-size: 11px;
+    font-weight: bold;
+    color: #ff3b3b;
+    margin-bottom: 12px;
+    line-height: 1.3;
+}
+.status-panel {
+    width: 100%;
+    padding: 12px;
+    border-radius: 4px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 15px;
+    color: #ffffff;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+    margin-bottom: 12px;
+    transition: background 0.3s;
+}
+.probability-panel {
+    width: 100%;
+    background-color: #f0f4f8;
+    border: 1px solid #cbd5e1;
+    padding: 12px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+.prob-line-1 {
+    font-size: 12px;
+    font-weight: bold;
+    color: #64748b;
+    margin-bottom: 4px;
+}
+.prob-fail-highlight {
+    color: #b91c1c; 
+}
+.prob-line-2 {
+    font-size: 14px;
+    font-weight: bold;
+    color: #1d4ed8;
+}
+.prob-success-highlight {
+    color: #1d4ed8; 
+}
+.enhancer-display {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    border: 1px solid #333;
+    background-color: #111111;
+    background-size: cover;
+    background-position: center;
+    border-radius: 4px;
+    overflow: hidden;
+}
+.enhancer-slot {
+    position: absolute;
+    width: 65px;
+    height: 65px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    border: 2px solid #57bdfe;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 0 15px rgba(87, 189, 254, 0.8);
+    animation: innerGlowPulse 2s infinite ease-in-out;
+    z-index: 2;
+}
+
+@keyframes innerGlowPulse {
+    0% { box-shadow: inset 0 0 10px rgba(87, 189, 254, 0.5); border-color: rgba(87, 189, 254, 0.6); }
+    50% { box-shadow: inset 0 0 25px rgba(87, 189, 254, 1); border-color: rgba(87, 189, 254, 1); }
+    100% { box-shadow: inset 0 0 10px rgba(87, 189, 254, 0.5); border-color: rgba(87, 189, 254, 0.6); }
+}
+
+.slot-success-rate {
+    position: absolute;
+    bottom: 25px; 
+    left: 50%;
+    transform: translateX(-50%); 
+    background-color: rgba(0,0,0,0.7);
+    color: #52ff95;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 10px;
+    text-align: center;
+    z-index: 2;
+    white-space: nowrap;
+}
+.floating-effect-text {
+    position: absolute;
+    font-weight: bold;
+    font-size: 20px;
+    text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
+    left: 50%; 
+    transform: translateX(-50%); 
+    animation: floatUpAndOut 1.2s forwards ease-out;
+    z-index: 5;
+}
+
+@keyframes floatUpAndOut {
+    0% { transform: translate(-50%, 15px); opacity: 0; }
+    20% { transform: translate(-50%, 0px); opacity: 1; }
+    80% { opacity: 1; }
+    100% { transform: translate(-50%, -25px); opacity: 0; }
+}
+
+.stack-controls {
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+.stack-feedback-area {
+    flex: 1;
+    height: 45px;
+    border: 1px dashed #999;
+    background-color: #fafafa;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px; 
+    font-weight: bold;
+    color: #444;
+}
+.main-trigger-btn {
+    width: 140px;
+    height: 45px;
+    background-color: #ff3b3b;
+    color: #ffffff;
+    border: 2px solid #b91c1c;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+}
+.main-trigger-btn:hover {
+    background-color: #d92727;
+}
+.main-trigger-btn:disabled {
+    background-color: #cccccc;
+    border-color: #aaaaaa;
+    color: #666666;
+    cursor: not-allowed;
+}
+
+/* ========================================= */
+/* [3. 결전의 브금 모듈 스타일]              */
+/* ========================================= */
+.bgm-wrapper {
+    width: 100%;
+    background-color: #ffffff;
+    border: 2px solid #333333;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+.bgm-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    font-weight: bold;
+}
+.bgm-title-text {
+    font-size: 16px;
+    color: #333333;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.bgm-nav-btns {
+    display: flex;
+    gap: 5px;
+}
+.bgm-arrow-btn {
+    background-color: #ffffff;
+    border: 1px solid #333333;
+    width: 28px;
+    height: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+.bgm-arrow-btn:hover {
+    background-color: #333333;
+    color: #ffffff;
+}
+.bgm-video-container {
+    width: 100%;
+    position: relative;
+    padding-top: 56.25%; 
+    background-color: #000000;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    overflow: hidden;
+}
+.bgm-video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.bgm-title-slider-zone {
+    margin-top: 12px;
+    width: 100%;
+    overflow: hidden; 
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    padding: 8px 0;
+    border-radius: 4px;
+    position: relative;
+}
+.bgm-title-track {
+    display: flex;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1); 
+    width: 100%;
+}
+.bgm-title-card {
+    flex: 0 0 100%; 
+    text-align: center;
+    font-size: 13px;
+    font-weight: bold;
+    color: #1e293b;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0 10px;
+}
+
+/* ========================================= */
+/* [4. 강화 로그 모듈 스타일]               */
+/* ========================================= */
+.log-wrapper {
+    width: 100%;
+    background-color: #ffffff;
+    border: 2px solid #333333;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 386px; 
+    overflow: hidden;
+}
+
+/* 기능 1: 상단 통계/분석 뷰포트 */
+.log-stats-panel {
+    background-color: #f1f5f9;
+    border-bottom: 1px solid #cbd5e1;
+    padding: 10px 12px;
+}
+.log-best-record {
+    font-size: 12px;
+    font-weight: bold;
+    color: #0f172a;
+    margin-bottom: 6px;
+    padding-bottom: 6px;
+    border-bottom: 1px dashed #cbd5e1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.log-best-badge {
+    padding: 1px 6px;
+    border-radius: 3px;
+    color: #ffffff;
+    font-size: 11px;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+}
+
+/* 동적 갱신 테이블 전용 컨테이너 박스 */
+.log-stats-table-container {
+    max-height: 48px;
+    overflow-y: auto;
+    font-size: 11px;
+    color: #475569;
+    font-weight: bold;
+}
+.log-stats-table-container::-webkit-scrollbar {
+    width: 4px;
+}
+.log-stats-table-container::-webkit-scrollbar-thumb {
+    background-color: #94a3b8;
+    border-radius: 2px;
+}
+.log-stats-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 2px 0;
+    border-bottom: 1px solid #e2e8f0;
+}
+.log-stats-row:last-child {
+    border-bottom: none;
+}
+.log-highlight-rate {
+    color: #2563eb;
+}
+
+/* 기능 2: 하단 실시간 피드 리스트 */
+.log-feed-box {
+    flex: 1;
+    overflow-y: scroll;
+    background-color: #fafafa;
+    padding: 10px 12px 35px 12px; 
+}
+.log-feed-box::-webkit-scrollbar {
+    width: 6px;
+}
+.log-feed-box::-webkit-scrollbar-thumb {
+    background-color: #333333;
+    border-radius: 3px;
+}
+.log-feed-item {
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 1.6;
+    border-bottom: 1px dashed #eeeeee;
+    padding: 3px 0;
+}
+.log-text-success { color: #16a34a; }
+.log-text-fail { color: #dc2626; }
+
+/* 하단 자석 고정형 미니 알림 바 */
+.log-limit-notice-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333333;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: bold;
+    text-align: center;
+    padding: 6px 0;
+    border-top: 1px solid #111111;
+    z-index: 5;
+    letter-spacing: -0.3px;
+}
+
+/* footer 고지문 */
+footer {
+    background-color: #1a1a1a;
+    color: #888888;
+    padding: 24px 12px;
+    font-size: 11px;
+    text-align: center;
+    line-height: 1.6;
+    margin-top: 50px; 
+    border-top: 1px solid #2a2a2a;
+    width: 100%;
+}
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.footer-disclaimer {
+    margin-bottom: 8px;
+    color: #555555;
+}
+footer a {
+    color: #aaaaaa;
+    text-decoration: none;
+    font-weight: bold;
+}
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* ==========================================================================
+모바일(MO) 반응형 레이아웃 스타일 (화면 너비 768px 이하일 때 적용)
+   ========================================================================== */
+@media screen and (max-width: 768px) {
+    body {
+        padding: 12px;
+        overflow-x: hidden;
+    }
+
+    .side-banner {
+        display: none !important;
+    }
+
+    .main-wrapper,
+    .content-center {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 auto;
+        padding: 0;
+    }
+
+    .left-column,
+    .right-column {
+        display: contents !important; 
+    }
+
+    .modules-container {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 24px !important; 
+    }
+
+    .left-column > div:nth-child(1) { 
+        order: 1 !important; 
+    }
+
+    .right-column > div:nth-child(1) { 
+        order: 2 !important; 
+    }
+
+    .right-column > div:nth-child(2) { 
+        order: 3 !important; 
+    }
+
+    .left-column > div:nth-child(2) { 
+        order: 4 !important; 
+    }
+
+    .inventory-grid {
+        display: grid !important;
+        grid-template-columns: repeat(5, 1fr) !important; 
+        gap: 4px !important; 
+        max-height: 380px; 
+    }
+
+    .inventory-slot {
+        width: 100% !important;
+        height: auto !important;
+        aspect-ratio: 1 / 1 !important; 
+    }
+
+    .speech-bubble {
+        width: 90%;
+        left: 5% !important;
+    }
+
+    iframe {
+        width: 100% !important;
+        height: 210px !important; 
+    }
+}
